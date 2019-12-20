@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Intive Calculator</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+        href="css/styles.css">
+
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+        integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+        integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+        integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="app" class="container d-flex flex-column border">
+        <div data-current-value id="display" class="d-flex justify-content-end align-items-center">
+            
+        </div>
+
+        <div id="inputs">
+            <div class="d-flex flex-row">
+                <button action-c type="button" class="btn btn-outline-danger">C</button>
+                <button action-ce type="button" class="btn btn-outline-danger">CE</button>
+            </div>
+
+            <div class="d-flex flex-row">
+                <button action-number type="button" class="btn btn-outline-dark">1</button>
+                <button action-number type="button" class="btn btn-outline-dark">2</button>
+                <button action-number type="button" class="btn btn-outline-dark">3</button>
+                <button action-operation type="button" class="btn btn-outline-info">*</button>
+            </div>
+
+            <div class="d-flex flex-row">
+                <button action-number type="button" class="btn btn-outline-dark">4</button>
+                <button action-number type="button" class="btn btn-outline-dark">5</button>
+                <button action-number type="button" class="btn btn-outline-dark">6</button>
+                <button action-operation type="button" class="btn btn-outline-info">/</button>
+            </div>
+
+            <div class="d-flex flex-row">
+                <button action-number type="button" class="btn btn-outline-dark">7</button>
+                <button action-number type="button" class="btn btn-outline-dark">8</button>
+                <button action-number type="button" class="btn btn-outline-dark">9</button>
+                <button action-operation type="button" class="btn btn-outline-info">-</button>
+            </div>
+
+            <div class="d-flex flex-row">
+                <button action-number type="button" class="btn btn-outline-dark">,</button>
+                <button action-number type="button" class="btn btn-outline-dark">0</button>
+                <button action-calculate type="button" class="btn btn-outline-dark">=</button>
+                <button action-operation type="button" class="btn btn-outline-info">+</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
