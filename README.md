@@ -1,6 +1,6 @@
 # Calculator
 
-![https://i.imgur.com/MnvDPoel.gif](https://i.imgur.com/MnvDPoel.gif)
+![https://i.imgur.com/MnvDPoe.gif](https://i.imgur.com/MnvDPoe.gif)
 
 ## Usage
 
