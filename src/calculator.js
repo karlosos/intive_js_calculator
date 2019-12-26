@@ -20,11 +20,11 @@ class Calculator {
     }
   
     setOperation(operation) {
-      if (this.lastValue != "" && this.currentValue != "") {
+      if (this.lastValue !== "" && this.currentValue !== "") {
         this.calculate();
       }
       this.operation = operation;
-      if (this.currentValue != "") {
+      if (this.currentValue !== "") {
         this.lastValue = this.currentValue;
       }
       this.currentValue = "";
@@ -52,7 +52,7 @@ class Calculator {
       }
   
       let result = this.currentValue;
-      
+
       if (this.operation === "+") {
         result = parseFloat(this.lastValue) + parseFloat(this.currentValue);
       }
