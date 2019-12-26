@@ -1,32 +1,23 @@
-const numberButtons = document.querySelectorAll('[action-number]');
-const operationButtons = document.querySelectorAll('[action-operation]');
-const calculateButton = document.querySelector('[action-calculate]');
-const clearAllButton = document.querySelector('[action-c]');
-const clearEntryButton = document.querySelector('[action-ce]');
 const currentValueOutput = document.querySelector('[data-current-value]');
 
 const calculator = new Calculator(currentValueOutput);
 
-numberButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    calculator.addDigit(button.innerText);
-  });
-});
+const buttons = document.getElementById('inputs');
 
-operationButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    calculator.setOperation(button.innerText);
-  });
-});
-
-calculateButton.addEventListener('click', button => {
-  calculator.calculate();
-});
-
-clearEntryButton.addEventListener('click', button => {
-  calculator.clearEntry();
-});
-
-clearAllButton.addEventListener('click', button => {
-  calculator.clearAll();
+buttons.addEventListener('click', event => {
+  if (event.target.hasAttribute('action-number')) {
+    calculator.addDigit(event.target.innerText);
+  } 
+  else if (event.target.hasAttribute('action-operation')) {
+    calculator.setOperation(event.target.innerText);
+  } 
+  else if (event.target.hasAttribute('action-calculate')) {
+    calculator.calculate();
+  } 
+  else if (event.target.hasAttribute('action-c')) {
+    calculator.clearEntry();
+  } 
+  else if (event.target.hasAttribute('action-ce')) {
+    calculator.clearAll();
+  } 
 });
