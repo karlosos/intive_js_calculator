@@ -14,10 +14,10 @@ buttons.addEventListener('click', event => {
   else if (event.target.hasAttribute('action-calculate')) {
     calculator.calculate();
   } 
-  else if (event.target.hasAttribute('action-c')) {
+  else if (event.target.hasAttribute('action-ce')) {
     calculator.clearEntry();
   } 
-  else if (event.target.hasAttribute('action-ce')) {
+  else if (event.target.hasAttribute('action-c')) {
     calculator.clearAll();
   } 
 });

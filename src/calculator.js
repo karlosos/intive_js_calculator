@@ -65,6 +65,17 @@ class Calculator {
       else if (this.operation === "/") {
         result = parseFloat(this.lastValue) / parseFloat(this.currentValue);
       }
+      else if (this.operation === "√") {
+        let base = parseFloat(this.lastValue);
+        let exponent = parseFloat(this.currentValue);
+        result = Math.pow(base, 1/exponent);
+      }
+      else if (this.operation === "^") {
+        let base = parseFloat(this.lastValue);
+        let exponent = parseFloat(this.currentValue);
+        result = Math.pow(base, exponent);
+      }
+
   
       this.savedOperand = this.currentValue;
       this.lastValue = result.toString();
