@@ -1,0 +1,40 @@
+body {
+    font-family: sans-serif;
+  }
+
+#app {
+  width: 345px;
+  margin-top: 50px;
+  padding: 0px;
+}
+
+#inputs {
+  padding: 10px;
+}
+
+#inputs > .flex-row > button {
+  width: 70px;
+  margin: 5px;
+}
+
+.btn-outline-dark {
+  height: 50px;
+}
+
+.btn-outline-info {
+  height: 50px;
+}
+
+.btn-outline-danger {
+  height: 40px
+}
+
+#display {
+  min-height: 55px;
+  background-color: gainsboro;
+  width: 100%;
+  padding: 15px;
+  font-weight: bold;
+  word-wrap: break-word;
+  word-break: break-all;
+}
