@@ -17,6 +17,12 @@ Open `index.html` in your browser.
 
 ## Development
 
+Install browser-sync (optionally):
+
+```
+npm install -g browser-sync
+```
+
 Starting browser-sync:
 
 ```
