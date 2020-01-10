@@ -1,7 +1,8 @@
 const currentValueOutput = document.querySelector('[data-current-value]');
 const expressionOutput = document.querySelector('[data-expression]');
 
-const calculator = new Calculator(currentValueOutput, expressionOutput);
+const exchanger = new Exchanger();
+const calculator = new Calculator(currentValueOutput, expressionOutput, exchanger);
 
 const buttons = document.getElementById('inputs');
 
@@ -20,5 +21,8 @@ buttons.addEventListener('click', event => {
   } 
   else if (event.target.hasAttribute('action-c')) {
     calculator.clearAll();
-  } 
+  }
+  else if (event.target.hasAttribute('action-currency')) {
+    calculator.setCurrency(event.target.innerText);
+  }  
 });
