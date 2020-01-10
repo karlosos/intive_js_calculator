@@ -1,10 +1,17 @@
 class Calculator {
-    constructor(currentValueOutput) {
+    constructor(currentValueOutput, expressionOutput) {
       this.currentValue = "";
       this.lastValue = "";
       this.operation = "";
+
       this.savedOperand = "";
+      this.lastAnswer = "";
+
       this.currentValueOutput = currentValueOutput;
+      this.expressionOutput = expressionOutput;
+      this.expression = "";
+
+      this.canSetOperation = false;
     }
   
     addDigit(digit) {
@@ -15,76 +22,112 @@ class Calculator {
       } else {
         this.currentValue += digit;
       }
-  
-      this.draw(this.currentValue);
+      this.drawCurrentValue(this.currentValue);
+      this.canSetOperation = true;
     }
   
     setOperation(operation) {
-      if (this.lastValue !== "" && this.currentValue !== "") {
-        this.calculate();
+      // prevent adding multiple operations
+      if (!this.canSetOperation) {
+        return
       }
+      this.canSetOperation = false;
+
+      this.expression += this.currentValue;
+      // if previous operation was √ then close parenthesis
+      if (this.operation === '√') {
+        this.expression += ')';
+      }
+
       this.operation = operation;
+      this.addOperationToExpression(operation);
+
       if (this.currentValue !== "") {
         this.lastValue = this.currentValue;
       }
       this.currentValue = "";
+      this.drawExpression();
+      this.drawCurrentValue("");
+      this.clearMemory();
+    }
+
+    addOperationToExpression(operation) {
+      if (operation === '√') {
+        this.expression += '^(1/'
+      } else {
+        this.expression += operation;
+      }
     }
   
     clearEntry() {
       this.currentValue = "";
-      this.draw("0");
+      this.drawCurrentValue("0");
     }
   
     clearAll() {
+      this.clearMemory();
+      this.expression = "";
       this.currentValue = "";
       this.lastValue = "";
       this.operation = "";
-      this.draw("0");
+      this.canSetOperation = false;
+      this.drawCurrentValue("0");
+      this.drawExpression();
     }
-  
+
+    clearMemory() {
+      this.savedOperand = "";
+      this.lastAnswer = "";
+    }
+
     calculate() {
+      this.retryLastOperation()
+
+      // when only one operand was given
       if (this.lastValue === "") {
         return;
       }
-  
-      if (this.currentValue === "" && this.savedOperand != "") {
-        this.currentValue = this.savedOperand;
-      }
-  
-      let result = this.currentValue;
 
-      if (this.operation === "+") {
-        result = parseFloat(this.lastValue) + parseFloat(this.currentValue);
-      }
-      else if (this.operation === "-") {
-        result = parseFloat(this.lastValue) - parseFloat(this.currentValue);
-      }
-      else if (this.operation === "*") {
-        result = parseFloat(this.lastValue) * parseFloat(this.currentValue);
-      }
-      else if (this.operation === "/") {
-        result = parseFloat(this.lastValue) / parseFloat(this.currentValue);
-      }
-      else if (this.operation === "√") {
-        let base = parseFloat(this.lastValue);
-        let exponent = parseFloat(this.currentValue);
-        result = Math.pow(base, 1/exponent);
-      }
-      else if (this.operation === "^") {
-        let base = parseFloat(this.lastValue);
-        let exponent = parseFloat(this.currentValue);
-        result = Math.pow(base, exponent);
-      }
+      this.expression += this.currentValue;
 
-  
+      // close parenthesis because with x√y we have x^(1/y) expression
+      if (this.operation === '√') {
+        this.expression += ')';
+      }
+    
+      let result = math.evaluate(this.expression);
+      this.drawExpression();
+      this.drawCurrentValue(result.toString());
+
+      this.lastAnswer = result;
       this.savedOperand = this.currentValue;
-      this.lastValue = result.toString();
-      this.draw(this.lastValue);
-      this.currentValue = "";
+      this.expression = "";
+      this.currentValue = result;
+    }
+
+    retryLastOperation() {
+      if (this.hasMemory()) {
+        this.lastValue = this.lastAnswer;
+        this.currentValue = this.savedOperand;
+        this.expression = this.lastValue;
+        this.addOperationToExpression(this.operation);
+      }
+    }
+
+    hasMemory() {
+      if (this.lastAnswer !== "" && this.savedOperand !== "") {
+        return true;
+      } else {
+        return false;
+      }
     }
   
-    draw(value) {
-      this.currentValueOutput.innerText = this.formatOutput(value);
+    drawCurrentValue(val) {
+      this.currentValueOutput.innerText = this.formatOutput(val);
+    }
+
+    drawExpression() {
+      this.expressionOutput.innerText = this.formatOutput(this.expression);
     }
   
     formatOutput(str) {
