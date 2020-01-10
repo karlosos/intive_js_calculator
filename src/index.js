@@ -1,6 +1,7 @@
 const currentValueOutput = document.querySelector('[data-current-value]');
+const expressionOutput = document.querySelector('[data-expression]');
 
-const calculator = new Calculator(currentValueOutput);
+const calculator = new Calculator(currentValueOutput, expressionOutput);
 
 const buttons = document.getElementById('inputs');
 
