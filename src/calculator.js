@@ -11,7 +11,7 @@ class Calculator {
       this.currentValueOutput = currentValueOutput;
       this.expressionOutput = expressionOutput;
       this.expression = ""; // for calculating purposes e.g. 27^(1/3)+3.893
-      this.expressionReadable = "" // for displaying purposes e.g. 27√3+USD1
+      this.expressionReadable = ""; // for displaying purposes e.g. 27√3+USD1
 
       this.canSetOperation = false;
 
@@ -47,7 +47,7 @@ class Calculator {
     setOperation(operation) {
       // prevent adding multiple operations
       if (!this.canSetOperation) {
-        return
+        return;
       }
       this.canSetOperation = false;
 
@@ -82,7 +82,7 @@ class Calculator {
 
     addOperationToExpression(operation) {
       if (operation === '√') {
-        this.expression += '^(1/'
+        this.expression += '^(1/';
       } else {
         this.expression += operation;
       }
@@ -113,7 +113,7 @@ class Calculator {
     }
 
     calculate() {
-      this.retryLastOperation()
+      this.retryLastOperation();
 
       this.expressionReadable += this.currentValue + this.currentCurrency;
       if (!this.changeCurrency()) {
@@ -135,7 +135,10 @@ class Calculator {
       if (this.operation === '√') {
         this.expression += ')';
       }
+
+      this.removeTrailingOperationCharacters();
     
+      console.log(this.expression);
       let result = math.evaluate(this.expression);
       this.drawExpression();
       this.drawCurrentValue(result.toString());
@@ -175,5 +178,14 @@ class Calculator {
   
     formatOutput(str) {
       return str.replace(".", ",");
+    }
+
+    removeTrailingOperationCharacters() {
+      if (this.currentValue === "") {
+        this.expression = this.expression.substring(0, this.expression.length-1);
+        if (this.operation === '√') {
+          this.expression = this.expression.substring(0, this.expression.length-4);
+        }
+      }
     }
   }
